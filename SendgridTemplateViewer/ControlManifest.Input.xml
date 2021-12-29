@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest>
+  <control namespace="Codebug" constructor="SendgridTemplateViewer" version="0.0.3" display-name-key="Sendgrid Template Viewer" description-key="Search with Template id and see the preview in a screen" control-type="standard" preview-image="img/preview.png">
+    <property name="TemplateId" display-name-key="TemplateId" description-key="Template Id of the send grid transactional template. Legacy template not supported" of-type="SingleLine.Text" usage="bound" required="true" />
+    <resources>
+      <code path="index.ts" order="1" />
+      <css path="../node_modules/bootstrap/dist/css/bootstrap.min.css" order="1" />
+    </resources>
+    <property name="ApiKey" display-name-key="ApiKey" description-key="Sendgrid api key" usage="input" required="true" of-type="SingleLine.Text" />
+  </control>
+</manifest>
