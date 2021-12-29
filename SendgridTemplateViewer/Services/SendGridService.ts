@@ -5,11 +5,25 @@ export const searchByTemplateId = async (templateId: string, apiKey: string) => 
     const headers = ConstructHeaders(apiKey);
 
     const response = await fetch(requestUrl, { headers: headers })
-        .then(response => response.json())
+        .then(response => {
+            if(response.ok){
+                return response.json()
+            }
+            else{
+                if(response.status === 404){
+                    console.error(`The template with the id of ${templateId} cannot be found in Sendgrid. Please make sure both the template id and api key are correct.`)
+                }
+                if(response.status === 403){
+                    console.error('Your api key is incorrect. please regenerate a new api key and use it instead.');
+                }
+                else{
+                    console.error(response);
+                }
+            }            
+        })
         .then(response => {
             return convertSuccessResponseToTemplateModel(response);
         })
-        .catch(error => console.error('Error occurred'));
     
     return response;
 }
